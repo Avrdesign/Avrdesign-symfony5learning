@@ -1,0 +1,15 @@
+AddDefaultCharset utf-8
+AddCharset utf-8 *
+AuthName symfony-proj
+
+DirectoryIndex /public/index.php
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^(.+) $1 [L]
+
+RewriteCond %{DOCUMENT_ROOT}/public%{REQUEST_URI} -f
+RewriteRule ^(.+) /public/$1 [L]
+
+Options +SymLinksIfOwnerMatch
+RewriteRule ^(.*)$ /public/ [QSA,L]
