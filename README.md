@@ -1,1 +1,1 @@
-"symfony 5 learning проект" 
+symfony 5 learning

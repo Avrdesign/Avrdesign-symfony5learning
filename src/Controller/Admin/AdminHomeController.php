@@ -11,7 +11,7 @@ class AdminHomeController extends AdminBaseController
      * @Route("/admin", name="admin_home")
      * @return Response
      */
-    public function index()
+    public function index(): object
     {
         $forRender = parent::renderDefault();
         return $this->render('admin/index.html.twig', $forRender);
