@@ -2,7 +2,8 @@
 
 {% block body %}
 <h1>{{ title }}</h1>
-    <a href="{{ path('admin_user_create') }}">Создать пользователя</a>
+    <p><a href="{{ path('app_logout') }}">Выйти</a></p>
+    <p><a href="{{ path('admin_user_create') }}">Создать пользователя</a></p>
     <h2>Список пользователей</h2>
     <ul>
         {% for user in users %}
