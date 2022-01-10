@@ -27,7 +27,7 @@
 {% endblock %}
 {% block addJs %}
     <script>
-        Vue.options.delimiters = ['[[',']]']; //для передачи переменной, чтобы уйти от синтаксиса как у WIG {{  }}
+        Vue.options.delimiters = ['[[',']]']; //для передачи переменной, чтобы уйти от синтаксиса скобок как у TWIG
         let app = new Vue({
             el: '#app',
             data: {
