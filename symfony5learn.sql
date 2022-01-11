@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Янв 11 2022 г., 13:34
--- Версия сервера: 5.6.43
--- Версия PHP: 7.3.2
+-- Время создания: Янв 11 2022 г., 22:25
+-- Версия сервера: 5.6.51
+-- Версия PHP: 7.3.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -32,11 +31,19 @@ CREATE TABLE `category` (
   `id` int(11) NOT NULL,
   `title` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` longtext COLLATE utf8mb4_unicode_ci,
-  `created_at` datetime NOT NULL,
+  `create_at` datetime NOT NULL,
   `update_at` datetime NOT NULL,
-  `is_pablished` tinyint(1) NOT NULL,
+  `is_published` tinyint(1) NOT NULL,
   `image` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `category`
+--
+
+INSERT INTO `category` (`id`, `title`, `description`, `create_at`, `update_at`, `is_published`, `image`) VALUES
+(3, 'Категория 1', 'Тестовая категория', '2022-01-11 21:38:31', '2022-01-11 21:38:31', 1, NULL),
+(4, 'Категория 2', 'Тестовая категория 2', '2022-01-11 22:21:30', '2022-01-11 22:21:30', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -90,6 +97,13 @@ CREATE TABLE `post` (
   `is_published` tinyint(1) NOT NULL,
   `category_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `post`
+--
+
+INSERT INTO `post` (`id`, `title`, `content`, `image`, `create_at`, `update_at`, `is_published`, `category_id`) VALUES
+(3, 'Пост 1', 'Lorem Ipsum - это текст-\"рыба\", часто используемый в печати и веб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.', NULL, '2022-01-11 22:21:56', '2022-01-11 22:22:53', 1, 3);
 
 -- --------------------------------------------------------
 
@@ -158,7 +172,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT для таблицы `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `comment`
@@ -170,7 +184,7 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT для таблицы `post`
 --
 ALTER TABLE `post`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `user`

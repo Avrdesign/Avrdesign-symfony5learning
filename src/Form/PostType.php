@@ -30,15 +30,17 @@ class PostType extends AbstractType
           'choice_label' => 'title'
         ))
         ->add('title', TextType::class, array(
-          'label' => 'Заголовок категории',
+          'label' => 'Заголовок поста',
           'attr' => [
             'placeholder' => 'Введите текст'
           ]
         ))
         ->add('content', TextareaType::class, array(
-          'label' => 'Описание категории',
+          'label' => 'Текст поста',
           'attr' => [
-            'placeholder' => 'Введите описание'
+            'placeholder' => 'Введите текст',
+              'rows' => 15,
+              'cols' => 120
           ]
         ))
         ->add('save', SubmitType::class, array(
