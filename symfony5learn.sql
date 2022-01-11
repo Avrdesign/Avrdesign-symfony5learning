@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Янв 10 2022 г., 12:32
+-- Время создания: Янв 11 2022 г., 13:34
 -- Версия сервера: 5.6.43
 -- Версия PHP: 7.3.2
 
@@ -21,6 +21,22 @@ SET time_zone = "+00:00";
 --
 -- База данных: `symfony5learn`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `category`
+--
+
+CREATE TABLE `category` (
+  `id` int(11) NOT NULL,
+  `title` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` longtext COLLATE utf8mb4_unicode_ci,
+  `created_at` datetime NOT NULL,
+  `update_at` datetime NOT NULL,
+  `is_pablished` tinyint(1) NOT NULL,
+  `image` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -55,7 +71,8 @@ CREATE TABLE `doctrine_migration_versions` (
 INSERT INTO `doctrine_migration_versions` (`version`, `executed_at`, `execution_time`) VALUES
 ('DoctrineMigrations\\Version20220104072730', '2022-01-04 10:31:06', 705),
 ('DoctrineMigrations\\Version20220110084313', '2022-01-10 11:45:25', 1266),
-('DoctrineMigrations\\Version20220110085330', '2022-01-10 11:54:29', 224);
+('DoctrineMigrations\\Version20220110085330', '2022-01-10 11:54:29', 224),
+('DoctrineMigrations\\Version20220111082757', '2022-01-11 11:28:49', 1112);
 
 -- --------------------------------------------------------
 
@@ -70,7 +87,8 @@ CREATE TABLE `post` (
   `image` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `create_at` datetime NOT NULL,
   `update_at` datetime NOT NULL,
-  `is_published` tinyint(1) NOT NULL
+  `is_published` tinyint(1) NOT NULL,
+  `category_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -100,6 +118,12 @@ INSERT INTO `user` (`id`, `email`, `roles`, `password`) VALUES
 --
 
 --
+-- Индексы таблицы `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `comment`
 --
 ALTER TABLE `comment`
@@ -116,7 +140,8 @@ ALTER TABLE `doctrine_migration_versions`
 -- Индексы таблицы `post`
 --
 ALTER TABLE `post`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_5A8A6C8D12469DE2` (`category_id`);
 
 --
 -- Индексы таблицы `user`
@@ -128,6 +153,12 @@ ALTER TABLE `user`
 --
 -- AUTO_INCREMENT для сохранённых таблиц
 --
+
+--
+-- AUTO_INCREMENT для таблицы `category`
+--
+ALTER TABLE `category`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `comment`
@@ -156,6 +187,12 @@ ALTER TABLE `user`
 --
 ALTER TABLE `comment`
   ADD CONSTRAINT `FK_9474526C4B89032C` FOREIGN KEY (`post_id`) REFERENCES `post` (`id`);
+
+--
+-- Ограничения внешнего ключа таблицы `post`
+--
+ALTER TABLE `post`
+  ADD CONSTRAINT `FK_5A8A6C8D12469DE2` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
